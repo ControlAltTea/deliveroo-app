@@ -1,10 +1,10 @@
-import { View, Text, Image, StyleSheet, Platform, StatusBar, SafeAreaView} from 'react-native'
-import React, {useLayoutEffect} from 'react'
+import { View, Text, Image, StyleSheet, Platform, StatusBar, SafeAreaView } from 'react-native'
+import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-const HomeScreen = () => { 
+const HomeScreen = () => {
     const navigation = useNavigation();
-    
+
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
@@ -13,23 +13,23 @@ const HomeScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text className="text-red-500">
-            {/* HEADER */}
-            <View className="flex-row pb-3 items-center mx-4 space-x-2">
-                <Image
-                    source={{
-                        uri: 'https://links.papareact.com/wru',
-                    }}
-                    className={`bg-gray-300 p-4 rounded-full`}
+            <Text>
+                {/* HEADER */}
+                <View className="flex-row pb-3 items-center mx-4 space-x-2">
+                    <Image
+                        source={{
+                            uri: 'https://links.papareact.com/wru',
+                        }}
+                        className={`bg-gray-300 p-4 rounded-full`}
                     />
-            </View>
-            <View>
-                <Text className="font-bold text-gray-400 text-xs">Deliver Now!</Text>
-                <Text className="font-bold text-xl">Current Location</Text>
+                    <View>
+                        <Text className="font-bold text-gray-400 text-xs">Deliver Now!</Text>
+                        <Text className="font-bold text-xl">Current Location</Text>
+                    </View>
                 </View>
             </Text>
         </SafeAreaView>
-        );
+    );
 }
 
 const styles = StyleSheet.create({
