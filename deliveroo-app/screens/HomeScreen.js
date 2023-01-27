@@ -1,4 +1,4 @@
-import { Dimensions, View, Text, Image, StyleSheet, Platform, StatusBar, TextInput, SafeAreaView } from 'react-native'
+import { Dimensions, View, Text, Image, StyleSheet, Platform, StatusBar, TextInput, SafeAreaView, ScrollView } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import {
@@ -7,11 +7,10 @@ import {
     MagnifyingGlassIcon,
     AdjustmentsVerticalIcon,
 } from 'react-native-heroicons/outline';
+import Categories from '../components/categories';
 
 const HomeScreen = () => {
     const navigation = useNavigation();
-
-    console.log(`width`, Dimensions.get('window').width)
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -53,6 +52,13 @@ const HomeScreen = () => {
                     </View>
                     <AdjustmentsVerticalIcon color="#00CCB8" size={20} />
                 </View>
+
+                {/* BODY */}
+                <ScrollView className="bg-gray-100">
+                    {/* COMPONENT -CATEGORIES */}
+                    <Categories/>
+                    {/* FEATURED ROWS */}
+                </ScrollView>
             </Text>
         </SafeAreaView>
     );
