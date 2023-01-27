@@ -3,10 +3,11 @@ import { Text, View } from 'react-native'
 
 const Categories = () => {
     return (
-      <View>
+      <ScrollView>
+        {/* CATEGORY CARD */}
         <Text>Categories</Text>            
-      </View>
+      </ScrollView>
   )
 }
 
-export default Categories
+export default Categories;

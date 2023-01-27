@@ -7,7 +7,7 @@ import {
     MagnifyingGlassIcon,
     AdjustmentsVerticalIcon,
 } from 'react-native-heroicons/outline';
-import Categories from '../components/categories';
+import Categories from '../components/Categories';
 
 const HomeScreen = () => {
     const navigation = useNavigation();
@@ -20,9 +20,8 @@ const HomeScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text>
                 {/* HEADER */}
-                <View className="flex flex-row pb-3 items-center mx-4 space-x-2 px-4 w-[${Dimensions.get('window').width}px]">
+                <View className="flex flex-row pb-3 items-center mx-4 space-x-2">
                     <Image
                         source={{
                             uri: 'https://links.papareact.com/wru',
@@ -38,12 +37,12 @@ const HomeScreen = () => {
                         <ChevronDownIcon size={20} color="#00CCBB"/>
                         </Text>
                     </View>
-                    <UserIcon size={35} color="#00CCBB"/>
+                    <UserIcon className="items-center" size={35} color="#00CCBB"/>
                 </View>
 
                 {/* SEARCH */}
-                <View className="flex-row items-center space-x-2 pb-2 mx-4 px-4">
-                    <View className="flex-1 flex-row w-[300px] space-x-2 bg-gray-200 p-3">
+                <View className="flex-row items-center space-x-2 pb-2 mx-4">
+                    <View className="flex-1 flex-row space-x-2 bg-gray-200 p-3">
                         <MagnifyingGlassIcon color="gray" size={20} />
                         <TextInput
                             placeholder='Restaurants and Cuisines'
@@ -54,12 +53,14 @@ const HomeScreen = () => {
                 </View>
 
                 {/* BODY */}
-                <ScrollView className="bg-gray-100">
+            <ScrollView className="bg-gray-100"
+                contentContainerStyle={{
+                paddingBottom: 100,
+            }}>
                     {/* COMPONENT -CATEGORIES */}
                     <Categories/>
                     {/* FEATURED ROWS */}
                 </ScrollView>
-            </Text>
         </SafeAreaView>
     );
 }
