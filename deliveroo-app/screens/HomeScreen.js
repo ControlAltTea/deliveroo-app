@@ -1,4 +1,5 @@
-import { Dimensions, View, Text, Image, StyleSheet, Platform, StatusBar, TextInput, SafeAreaView, ScrollView } from 'react-native'
+import { Dimensions, View, Text, Image, StyleSheet, Platform, StatusBar, TextInput, ScrollView } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import {
