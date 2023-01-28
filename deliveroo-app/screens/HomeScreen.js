@@ -58,8 +58,8 @@ const HomeScreen = () => {
                 paddingBottom: 100,
             }}>
                     {/* COMPONENT -CATEGORIES */}
-                    <Categories/>
-                    {/* FEATURED ROWS */}
+                    <Categories />
+                {/* FEATURED ROWS */}
                 </ScrollView>
         </SafeAreaView>
     );
