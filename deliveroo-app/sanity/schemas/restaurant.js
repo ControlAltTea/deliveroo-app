@@ -12,34 +12,34 @@ export default {
         {
             name: "short_description",
             type: "string",
-            title: "short description",
+            title: "Short Description",
             validation: (Rule) => Rule.max(200),
         },
         {
             name: "image",
             type: "image",
-            title: "image of the restaurant",
+            title: "Image of the Restaurant",
         },
         {
             name: "lat",
             type: "number",
-            title: "Latitude of the restaurant",
+            title: "Latitude of the Restaurant",
         },
         {
             name: "long",
             type: "number",
-            title: "longitude of the restaurant",
+            title: "Longitude of the Restaurant",
         },
         {
             name: "address",
             type: "string",
-            title: "restaurant address",
+            title: "Restaurant Address",
             validation: (Rule) => Rule.required()
         },
         {
             name: "rating",
             type: "number",
-            title: "Enter a rating from (1-5 Stars)",
+            title: "Enter a Rating from (1-5 Stars)",
             validation: (Rule) =>
                 Rule.required()
                     .min(1)
@@ -48,7 +48,7 @@ export default {
         },
         {
             name: "type",
-            title: "category",
+            title: "Category",
             validation: (Rule) => Rule.required(),
             type: "reference",
             to: [{
