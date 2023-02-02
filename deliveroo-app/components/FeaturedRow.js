@@ -6,7 +6,7 @@ import RestaurantCard from './RestaurantCard'
 
 const FeaturedRow = ({ id, title, description }) => {
   const [restaurants, setRestaurants] = useState([]);
-   
+
   const query = `*[_type=="featured" && _id == $id] {
             ...,
             restaurants[]->{
@@ -20,13 +20,12 @@ const FeaturedRow = ({ id, title, description }) => {
 
   useEffect(() => {
     client
-      .fetch(query)
+      .fetch(query, {id})
       .then((data) => {
         setRestaurants(data?.restaurants);
       });
     }, [])
     
-  console.log(`restaurants`, restaurants);
 
   return (
       <View>

@@ -32,25 +32,27 @@ const HomeScreen = () => {
     });
   }, []);
 
-    const query = `*[_type=="featured"] {
-            ...,
-            restaurants[]->{
-                ...,
-                dishes[]->,
-                type->{
-                name
-            }
-        }
-      }`;    
-
   useEffect(() => {
       client
-        .fetch(query)
+        .fetch(
+            `*[_type=="featured"] {
+              ...,
+              restaurants[]->{
+                  ...,
+                  dishes[]->,
+                  type->{
+                  name
+              }
+            }
+          }`
+        )
         .then((data) => {
-             setFeaturedCategories(data);
+          setFeaturedCategories(data);
         });
   }, [0]);
     
+  console.log(`categories`, featuredCategories);
+
   return (
     <SafeAreaView style={styles.container}>
       {/* HEADER */}
@@ -94,14 +96,14 @@ const HomeScreen = () => {
         {/* COMPONENT -CATEGORIES */}
               <Categories />
               {/* featured */}
-              {featuredCategories?.map((category) => {
-                  <FeaturedRow
-                      key={category._id}
-                      id={category._id}
-                      title={category.name}
-                      description={category.short_description}
-                  />                  
-              })}
+        {featuredCategories?.map((category) => (
+          <FeaturedRow
+            id={category._id}
+            key={category._id}
+            title={category.name}
+            description={category.short_description}
+          />
+        ))}
 
       </ScrollView>
     </SafeAreaView>
