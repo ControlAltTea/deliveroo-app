@@ -50,8 +50,6 @@ const HomeScreen = () => {
           setFeaturedCategories(data);
         });
   }, [0]);
-    
-  console.log(`categories`, featuredCategories);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -94,7 +92,7 @@ const HomeScreen = () => {
         }}
       >
         {/* COMPONENT -CATEGORIES */}
-              <Categories />
+              {/* <Categories /> */}
               {/* featured */}
         {featuredCategories?.map((category) => (
           <FeaturedRow

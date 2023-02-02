@@ -4,7 +4,7 @@ export default {
     type: 'document',
     fields: [
         {
-            name: "name",
+            name: "title",
             type: "string",
             title: "Restaurant name",
             validation: (Rule) => Rule.required(),

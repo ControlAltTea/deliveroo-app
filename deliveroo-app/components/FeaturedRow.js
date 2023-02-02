@@ -2,12 +2,15 @@ import React, {useEffect, useState} from 'react'
 import { ScrollView, Text, View } from 'react-native'
 import { ArrowRightIcon } from 'react-native-heroicons/outline'
 import client from '../sanity/sanity.cli';
+import restaurant from '../sanity/schemas/restaurant';
 import RestaurantCard from './RestaurantCard'
 
 const FeaturedRow = ({ id, title, description }) => {
   const [restaurants, setRestaurants] = useState([]);
 
-  const query = `*[_type=="featured" && _id == $id] {
+  useEffect(() => {
+    client
+      .fetch(`*[_type=="featured" && _id == $id] {
             ...,
             restaurants[]->{
                 ...,
@@ -16,17 +19,16 @@ const FeaturedRow = ({ id, title, description }) => {
                 name
             }
         },
-      }[0]`
-
-  useEffect(() => {
-    client
-      .fetch(query, {id})
+      }[0]`,
+        { id })
       .then((data) => {
-        setRestaurants(data?.restaurants);
-      });
-    }, [])
+        console.log(`data?.restaurants`, data?.restaurants);
+        setRestaurants(data?.restaurants)
+      })
+  }, []);
     
-
+  // console.log(`restaurants`, restaurants);
+  
   return (
       <View>
           <View className="mt-4 flex-row items-center justify-between px-4">
@@ -44,19 +46,16 @@ const FeaturedRow = ({ id, title, description }) => {
               showsHorizontalScrollIndicator={false}
               className="pt-4"
           >
-              {/* RestaurantCards... */}
-              {/* <RestaurantCard
-                id={123}
-                imgUrl="https://links.papareact.com/gn7"
-                title="Yo! Sushi"
-                rating={4.5}
-                genre="Japanese"
-                address="123 Main St."
-                short_description="This is a Test description"
-                dishes={[]}
-                long={20}
-                lat={0}
-              /> */}
+    
+        {/* RestaurantCards... */}
+        {restaurants?.map(restaurant => {
+          <RestaurantCard
+            key={restaurant._id}
+            id={restaurant._id}
+            title={restaurant.name}
+          />       
+          // console.log(`restaurant`, restaurant)
+        })}
           </ScrollView>
     </View>
   )
