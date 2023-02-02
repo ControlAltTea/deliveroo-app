@@ -1,11 +1,13 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { ScrollView, Text, View } from 'react-native'
 import { ArrowRightIcon } from 'react-native-heroicons/outline'
 import client from '../sanity/sanity.cli';
 import RestaurantCard from './RestaurantCard'
 
 const FeaturedRow = ({ id, title, description }) => {
-  const query = `*[_type=="featured"] && _id == $id] {
+  const [restaurants, setRestaurants] = useState([]);
+   
+  const query = `*[_type=="featured" && _id == $id] {
             ...,
             restaurants[]->{
                 ...,
@@ -13,13 +15,18 @@ const FeaturedRow = ({ id, title, description }) => {
                 type->{
                 name
             }
-        },[0]    
-    }, { id }`
+        },
+      }[0]`
 
   useEffect(() => {
     client
       .fetch(query)
-  }, [])
+      .then((data) => {
+        setRestaurants(data?.restaurants);
+      });
+    }, [])
+    
+  console.log(`restaurants`, restaurants);
 
   return (
       <View>

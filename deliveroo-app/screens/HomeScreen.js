@@ -33,15 +33,15 @@ const HomeScreen = () => {
   }, []);
 
     const query = `*[_type=="featured"] {
-             ...,
+            ...,
             restaurants[]->{
                 ...,
                 dishes[]->,
                 type->{
                 name
             }
-        },
-    }`;    
+        }
+      }`;    
 
   useEffect(() => {
       client
@@ -50,8 +50,6 @@ const HomeScreen = () => {
              setFeaturedCategories(data);
         });
   }, [0]);
-
-    console.log(featuredCategories);
     
   return (
     <SafeAreaView style={styles.container}>
