@@ -20,6 +20,7 @@ import {
 import Categories from '../components/Categories';
 import FeaturedRow from '../components/FeaturedRow';
 import client from '../sanity/sanity.cli';
+import category from '../sanity/schemas/category';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -32,13 +33,14 @@ const HomeScreen = () => {
   }, []);
 
     const query = `*[_type=="featured"] {
+             ...,
             restaurants[]->{
                 ...,
                 dishes[]->,
                 type->{
                 name
             }
-        },    
+        },
     }`;    
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const HomeScreen = () => {
         .then((data) => {
              setFeaturedCategories(data);
         });
-  }, []);
+  }, [0]);
 
     console.log(featuredCategories);
     
@@ -92,23 +94,17 @@ const HomeScreen = () => {
         }}
       >
         {/* COMPONENT -CATEGORIES */}
-        <Categories />
-        {/* FEATURED ROWS */}
-        <FeaturedRow
-          id='123'
-          title='Featured'
-          description='Paid placements from our partners'
-        />
-        <FeaturedRow
-          id='1234'
-          title='Tasty Discounts'
-          description='Paid placements from our partners'
-        />
-        <FeaturedRow
-          id='12345'
-          title='Offers near you'
-          description='Paid placements from our partners'
-        />
+              <Categories />
+              {/* featured */}
+              {featuredCategories?.map((category) => {
+                  <FeaturedRow
+                      key={category._id}
+                      id={category._id}
+                      title={category.name}
+                      description={category.short_description}
+                  />                  
+              })}
+
       </ScrollView>
     </SafeAreaView>
   );
