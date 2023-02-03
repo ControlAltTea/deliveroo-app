@@ -92,8 +92,9 @@ const HomeScreen = () => {
         }}
       >
         {/* COMPONENT -CATEGORIES */}
-              {/* <Categories /> */}
-              {/* featured */}
+        {/* <Categories /> */}
+          <Categories />
+        {/* featured */}
         {featuredCategories?.map((category) => (
           <FeaturedRow
             id={category._id}
