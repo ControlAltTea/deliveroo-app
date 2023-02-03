@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { ScrollView, Text, View } from 'react-native'
 import { ArrowRightIcon } from 'react-native-heroicons/outline'
-import client from '../sanity/sanity.cli';
+import client, { urlFor } from '../sanity/sanity.cli';
 import restaurant from '../sanity/schemas/restaurant';
 import RestaurantCard from './RestaurantCard'
 
@@ -22,12 +22,9 @@ const FeaturedRow = ({ id, title, description }) => {
       }[0]`,
         { id })
       .then((data) => {
-        console.log(`data?.restaurants`, data?.restaurants);
         setRestaurants(data?.restaurants)
       })
   }, []);
-    
-  // console.log(`restaurants`, restaurants);
   
   return (
       <View>
@@ -48,15 +45,24 @@ const FeaturedRow = ({ id, title, description }) => {
           >
     
         {/* RestaurantCards... */}
-        {restaurants?.map(restaurant => {
+        {restaurants?.map(restaurant => (
           <RestaurantCard
             key={restaurant._id}
             id={restaurant._id}
+            imgUrl={restaurant.image}
             title={restaurant.name}
-          />       
-          // console.log(`restaurant`, restaurant)
-        })}
-          </ScrollView>
+            rating={restaurant.rating}
+            genre={restaurant.type?.name}
+            address={restaurant.address}
+            short_description={restaurant.short_description}
+            dishes={restaurant.dishes}
+            long={restaurant.long}
+            lat={restaurant.lat}
+            />    
+            )
+        )}
+
+        </ScrollView>
     </View>
   )
 }

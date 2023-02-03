@@ -4,7 +4,6 @@ import { StarIcon } from 'react-native-heroicons/solid'
 import { MapPinIcon } from 'react-native-heroicons/outline'
 import { urlFor } from '../sanity/sanity.cli'
 
-
 const RestaurantCard = ({
     id,
     imgUrl,
@@ -17,11 +16,12 @@ const RestaurantCard = ({
     long,
     lat
 }) => {
+
   return (
     <TouchableOpacity className="bg-white mr-3 shadow">
         <Image
               source={{
-                uri: 'https://links.papareact.com/gn7',
+                uri: urlFor(imgUrl).url(),
               }}
               className="h-36 w-36 rounded-sm"
           />  
