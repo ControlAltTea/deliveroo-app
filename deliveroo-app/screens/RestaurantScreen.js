@@ -1,8 +1,12 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
 import React, { useLayoutEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Text, StyleSheet, StatusBar, ScrollView, Image } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, ScrollView, Image, TouchableOpacity } from 'react-native'
+import {
+    ArrowLeftIcon
+} from 'react-native-heroicons/solid';
 import { urlFor } from '../sanity/sanity.cli';
+
 
 const RestaurantScreen = () => {
     const navigation = useNavigation();
@@ -34,7 +38,13 @@ const RestaurantScreen = () => {
                     uri: urlFor(imgUrl).url(),
                 }}
                 className="w-full h-56 bg-gray-300 p-4"
-            />
+                />
+                <TouchableOpacity>
+                    <ArrowLeftIcon
+                        size={20}
+                        color="#00CCBB"
+                    />
+                </TouchableOpacity>
             </View>
         </ScrollView>
     )
