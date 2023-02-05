@@ -16,6 +16,7 @@ import {
     QuestionMarkCircleIcon,
 } from 'react-native-heroicons/outline';
 import { urlFor } from '../sanity/sanity.cli';
+import DishRow from '../components/DishRow';
 
 
 const RestaurantScreen = () => {
@@ -71,25 +72,43 @@ const RestaurantScreen = () => {
                         </View>
                         <View className="flex-row items-center space-x-1">
                             <MapPinIcon color="gray" opacity={0.5} size={22} />
-                            <Text className="text-green-500">Nearby  </Text>. {address}
+                            <Text className="text-green-500">Nearby{address}</Text>
                         </View>
                     </View>
-                    <Text
-                        className="text-gray-500 mt-2 pb-4"
-                    >
-                        {short_description}
-                    </Text>
+                    <Text className="text-gray-500 mt-2 pb-4"
+                    >{short_description}</Text>
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity className="flex-row items-center space-x-2 p-4 border-y border-gray-300">
                     <QuestionMarkCircleIcon
                             color="gray"
                             opacity={0.6}
                             size={20}    
-                        />
-                        <ChevronRightIcon
-                            color="#00CCBB"
-                        />
+                    />
+                    <Text>
+                        Have a food allergy?
+                    </Text>
+                    <ChevronRightIcon
+                        color="#00CCBB"
+                    />
                 </TouchableOpacity>
+            </View>
+
+            <View>
+                <Text className="px-4 pt-6 mb-3 font-bold text-xl">
+                    Menu
+                </Text>
+
+                {/* DISH ROWS */}
+                {dishes.map(dish=>(
+                <DishRow
+                    key={dish._id}
+                    id={dish._id}
+                    name={dish.name}
+                    description={dish.short_description}
+                    price={dish.price}
+                    image={dish.image}    
+                />
+                ))}
             </View>
         </ScrollView>
     )
