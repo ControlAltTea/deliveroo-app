@@ -1,6 +1,7 @@
 import React from 'react'
 import Currency from 'react-currency-formatter'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { urlFor } from '../sanity/sanity.cli'
 
 const DishRow = ({
   id,
@@ -12,18 +13,26 @@ const DishRow = ({
     return (
       <TouchableOpacity>
         <View>
-          <Text>
+          <Text className="text-lg mb-1">
             {name}
           </Text>
-          <Text>
+          <Text className="text-gray-400">
             {description}
           </Text>
-          <Text>
+          <Text className="text-gray-400 mt-2">
             <Currency
               quantity={price}
               currency="USD"
             />
           </Text>
+        </View>
+        <View>
+          <Image
+            source={{
+              uri: urlFor(image).url()
+            }}
+            className="h-20 w-20 bg-gray-300 p-4"
+          />
         </View>
        </TouchableOpacity>
   )
