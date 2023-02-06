@@ -1,4 +1,5 @@
 import React from 'react'
+import Currency from 'react-currency-formatter'
 import { Text, TouchableOpacity, View } from 'react-native'
 
 const DishRow = ({
@@ -17,9 +18,14 @@ const DishRow = ({
           <Text>
             {description}
           </Text>
+          <Text>
+            <Currency
+              quantity={price}
+              currency="USD"
+            />
+          </Text>
         </View>
-        <Text>DishRow</Text>            
-      </TouchableOpacity>
+       </TouchableOpacity>
   )
 }
 
