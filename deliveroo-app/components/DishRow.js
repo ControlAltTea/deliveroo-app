@@ -1,11 +1,25 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 
-const DishRow = () => {
+const DishRow = ({
+  id,
+  name,
+  description,
+  price,
+  image
+}) => {
     return (
-      <View>
+      <TouchableOpacity>
+        <View>
+          <Text>
+            {name}
+          </Text>
+          <Text>
+            {description}
+          </Text>
+        </View>
         <Text>DishRow</Text>            
-      </View>
+      </TouchableOpacity>
   )
 }
 

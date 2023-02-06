@@ -48,7 +48,11 @@ const HomeScreen = () => {
         )
         .then((data) => {
           setFeaturedCategories(data);
-        });
+        })
+        .catch(err => {
+          //Any error occurs in json parsing or after fetching data will jump to here
+          console.log(err);
+        })
   }, [0]);
 
   return (
