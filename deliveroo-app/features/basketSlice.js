@@ -22,4 +22,6 @@ export const { addToBasket, removeFromBasket } = backetSlice.actions
 
 export const selectBasketItems = (state) => state.basket.items;
 
+export const selectBasketItemsWithId = (state, id) => state.basket.items.filter((item) => item.id === id);
+
 export default backetSlice.reducer

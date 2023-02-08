@@ -3,7 +3,7 @@ import Currency from 'react-currency-formatter'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { MinusCircleIcon, PlusCircleIcon } from 'react-native-heroicons/solid'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToBasket, selectBasketItems } from '../features/basketSlice'
+import { addToBasket, selectBasketItems, selectBasketItemsWithId } from '../features/basketSlice'
 import { urlFor } from '../sanity/sanity.cli'
 
 const DishRow = ({
@@ -15,7 +15,7 @@ const DishRow = ({
 }) => {
 
   const [isPressed, setIsPressed] = useState(false);
-  const items = useSelector(selectBasketItems);
+  const items = useSelector((state) => selectBasketItemsWithId(state, id));
   const dispatch = useDispatch();
    
   const addItemToBasket = () => {
