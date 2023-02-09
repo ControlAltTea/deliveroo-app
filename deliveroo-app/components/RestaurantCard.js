@@ -57,7 +57,7 @@ const RestaurantCard = ({
               </View>
           </View>
     </TouchableOpacity>
-    )
+    )             
 }
 
 export default RestaurantCard
