@@ -23,9 +23,9 @@ const BasketScreen = () => {
     }, [items]);
 
     return (
-        <SafeAreaView>
-            <View>
-                <View>
+        <SafeAreaView className="flex-1 bg-white">
+            <View className="flex-1 bg-gray-100">
+                <View className="p-5 border-b border-[#00CCb8] bg-white shadow-xs">
                     <View>
                         <Text className="text-lg font-bold text-center">
                             Basket
@@ -40,6 +40,11 @@ const BasketScreen = () => {
                     >
                         <XCircleIcon color="#00CCB8" height={50} width={50} />
                     </TouchableOpacity>
+                </View>
+                <View>
+                    <Image source={{
+                        uri: 'https://links.papareact.com/wru'
+                    }} />
                 </View>
             </View>
         </SafeAreaView>
