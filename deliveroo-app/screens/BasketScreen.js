@@ -2,10 +2,11 @@ import { useNavigation } from '@react-navigation/native'
 import React, {useMemo, useState} from 'react'
 import { View, Text, SafeAreaView, TouchableOpacity, Image, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBasketItems } from '../features/basketSlice';
+import { removeFromBasket, selectBasketItems } from '../features/basketSlice';
 import { selectRestaurant } from '../features/restaurantSlice';
 import { XCircleIcon } from "react-native-heroicons/solid"
 import { urlFor } from '../sanity/sanity.cli';
+import Currency from 'react-currency-formatter'
 
 const BasketScreen = () => {
     const navigation = useNavigation();
@@ -60,6 +61,7 @@ const BasketScreen = () => {
                     {Object.entries(groupedItemsInBasket).map(([key, items]) => (
                         <View
                             key={key}
+                            className="flex-row items-center space-x-6 px-4 py-3 bg-white my-5"
                         >
                             <Text>{items.length}x</Text>
                             <Image
@@ -67,6 +69,21 @@ const BasketScreen = () => {
                                 className="h-12 w-12 rounded-full"
                             />
                             <Text>{items[0]?.name}</Text>
+
+                            <Text className="text-gray-600">
+                                <Currency quantity={items[0]?.price} currency="USD"/>
+                            </Text>
+
+                            <TouchableOpacity>
+                                <Text
+                                    className="text-[#00CCB8]"
+                                    onPress={() => {
+                                        dispatch(removeFromBasket({id:key}))
+                                    }}
+                                >
+                                    Remove
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     ))}
                 </ScrollView>
