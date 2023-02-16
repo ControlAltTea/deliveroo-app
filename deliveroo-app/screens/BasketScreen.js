@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/native'
-import React, {useMemo, useState, useEffect} from 'react'
-import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
+import React, {useMemo, useState} from 'react'
+import { View, Text, SafeAreaView, TouchableOpacity, Image, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBasketItems } from '../features/basketSlice';
 import { selectRestaurant } from '../features/restaurantSlice';
-import {XCircleIcon} from "react-native-heroicons/solid"
+import { XCircleIcon } from "react-native-heroicons/solid"
+import { urlFor } from '../sanity/sanity.cli';
 
 const BasketScreen = () => {
     const navigation = useNavigation();
@@ -41,11 +42,34 @@ const BasketScreen = () => {
                         <XCircleIcon color="#00CCB8" height={50} width={50} />
                     </TouchableOpacity>
                 </View>
-                <View>
-                    <Image source={{
-                        uri: 'https://links.papareact.com/wru'
-                    }} />
+
+                <View className="flex-row items-center space-x-4 px-4 py-3 bg-white my-5">
+                    <Image
+                        source={{
+                            uri: 'https://links.papareact.com/wru'
+                        }}
+                        className="h-7 w-7 bg-gray-300 p-4 rounded-full"
+                    />
+                    <Text className="flex-1">Deliver in 50-75 min</Text>
+                    <TouchableOpacity>
+                        <Text className="text-[#00CCB8]">Change</Text>
+                    </TouchableOpacity>
                 </View>
+
+                <ScrollView>
+                    {Object.entries(groupedItemsInBasket).map(([key, items]) => (
+                        <View
+                            key={key}
+                        >
+                            <Text>{items.length}x</Text>
+                            <Image
+                                source={{ uri: urlFor(items[0]?.image).url() }}
+                                className="h-12 w-12 rounded-full"
+                            />
+                            <Text>{items[0]?.name}</Text>
+                        </View>
+                    ))}
+                </ScrollView>
             </View>
         </SafeAreaView>
     )
