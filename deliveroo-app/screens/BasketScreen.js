@@ -100,6 +100,26 @@ const BasketScreen = () => {
                             <Currency quantity={basketTotal} currency="USD"/>
                         </Text>
                     </View>
+                    <View className="flex-row justify-between">
+                        <Text className="text-gray-400">
+                            Delivery Fee
+                        </Text>
+                        <Text className="text-gray-400">
+                            <Currency quantity={5.99} currency="USD"/>
+                        </Text>
+                    </View>
+                    <View className="flex-row justify-between">
+                        <Text>
+                            Order Total
+                        </Text>
+                        <Text className="font-extrabold">
+                            <Currency quantity={basketTotal + 5.99} currency="USD"/>
+                        </Text>
+                    </View>
+
+                    <TouchableOpacity className="rounded-lg bg-[#00CCB8] p-4">
+                        <Text className="text-center text-white text-lg font-bold">Place order</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </SafeAreaView>
