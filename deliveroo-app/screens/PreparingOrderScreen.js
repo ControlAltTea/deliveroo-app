@@ -3,9 +3,12 @@ import React, { useEffect } from 'react'
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native'
 import * as Animatable from "react-native-animatable"
 import * as Progress from "react-native-progress"
+import { useSelector } from 'react-redux'
+import { selectRestaurant } from '../features/restaurantSlice'
 
 const PreparingOrderScreen = () => {
     const navigation = useNavigation();
+    const restaurant = useSelector(selectRestaurant);
 
     useEffect(() => {
         setTimeout(() => {
@@ -26,7 +29,7 @@ const PreparingOrderScreen = () => {
                 iterationCount={1}
                 className="text-lg my-10 text-white font-bold text-center"
             >
-                Waiting for Restaurant to accept your order!
+                Waiting for {restaurant.title} to accept your order!
             </Animatable.Text>
             <Progress.Circle size={60} indeterminate={true} color="white" />
         </SafeAreaView>
