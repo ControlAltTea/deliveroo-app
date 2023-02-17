@@ -1,7 +1,7 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
 import React, { useLayoutEffect, useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Text, StyleSheet, StatusBar, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import {
     ArrowLeftIcon,
     StarIcon,
@@ -136,12 +136,5 @@ const RestaurantScreen = () => {
         </>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'white',
-        paddingTop: Platform.OS == 'android' ? StatusBar.currentHeight : 5,
-    },
-});
 
 export default RestaurantScreen

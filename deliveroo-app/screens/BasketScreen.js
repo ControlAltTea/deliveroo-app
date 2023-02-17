@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, {useMemo, useState} from 'react'
-import { View, Text, SafeAreaView, TouchableOpacity, Image, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity, Image, ScrollView, StyleSheet, StatusBar } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromBasket, selectBasketItems, selectBasketTotal } from '../features/basketSlice';
 import { selectRestaurant } from '../features/restaurantSlice';
@@ -26,7 +26,7 @@ const BasketScreen = () => {
     }, [items]);
 
     return (
-        <SafeAreaView className="flex-1 bg-white">
+        <SafeAreaView style={styles.container} className="flex-1 bg-white">
             <View className="flex-1 bg-gray-100">
                 <View className="p-5 border-b border-[#00CCb8] bg-white shadow-xs">
                     <View>
@@ -117,7 +117,9 @@ const BasketScreen = () => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity className="rounded-lg bg-[#00CCB8] p-4">
+                    <TouchableOpacity
+                        onPress={()=>navigation.navigate("PreparingOrderScreen")}
+                        className="rounded-lg bg-[#00CCB8] p-4">
                         <Text className="text-center text-white text-lg font-bold">Place order</Text>
                     </TouchableOpacity>
                 </View>
@@ -126,4 +128,12 @@ const BasketScreen = () => {
     )
 }
 
+
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'white',
+        paddingTop: Platform.OS == 'android' ? StatusBar.currentHeight : 5,
+    },
+});
 export default BasketScreen

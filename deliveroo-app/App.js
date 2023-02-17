@@ -21,9 +21,14 @@ export default function App() {
           <Stack.Screen name='Restaurant' component={RestaurantScreen}/>
           <Stack.Screen name='Basket'
             component={BasketScreen}
-            options={{presentation: 'modal', headerShown: true}}
+            options={{presentation: 'modal', headerShown: false}}
           />
-          <Stack.Screen name='PreparingOrderScreen' component={PreparingOrderScreen}/>
+          <Stack.Screen name='PreparingOrderScreen'
+            component={PreparingOrderScreen}
+            options={{
+              presentation: 'fullScreenModal', headerShown: false
+            }}
+          />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
