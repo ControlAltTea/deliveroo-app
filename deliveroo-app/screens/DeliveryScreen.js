@@ -1,11 +1,13 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React from 'react';
 import { Image, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { XMarkIcon } from 'react-native-heroicons/outline';
 import { useSelector } from 'react-redux';
 import { selectRestaurant } from '../features/restaurantSlice';
-import * as Animatable from "react-native-animatable"
-import * as Progress from "react-native-progress"
+import * as Animatable from "react-native-animatable";
+import * as Progress from "react-native-progress";
+import { XIcon } from "react-native-heroicons/solid";
+import MapView, { Marker } from "react-native-maps";
 
 const DeliveryScreen = () => {
     const navigation = useNavigation();
@@ -45,14 +47,32 @@ const DeliveryScreen = () => {
                     </Text>
                 </View>
             </SafeAreaView>
+            <MapView
+                style={styles.map}
+                initialRegion={{
+                    latitude: restaurant.lat,
+                    longitude: restaurant.long,
+                    // latitudeDelta: 0.005,
+                    // longitudeDelta: 0.005,
+                }}
+                className="flex-1 -mt-10 z-0"
+                mapType="mutedStandard"
+            >
+            </MapView>
         </View>
-        )
+    )
 }
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         paddingTop: Platform.OS == 'android' ? StatusBar.currentHeight : 5,
     },
+    map: {
+        width: '100%',
+        height: '100%',
+    },
+    
 });
 
 export default DeliveryScreen
